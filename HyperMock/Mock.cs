@@ -14,6 +14,11 @@ namespace HyperMock
         private static readonly MockHelper _mockHelper = new MockHelper();
 
         /// <summary>
+        /// Sets the default behavior for the newly created Mock objects.
+        /// </summary>
+        public static MockBehavior DefaultMockBehavior = MockBehavior.Loose;
+
+        /// <summary>
         /// Initializes a new instance of the class.
         /// </summary>
         /// <param name="obj">Proxy object</param>
@@ -28,6 +33,15 @@ namespace HyperMock
         /// Gets the proxy instance.
         /// </summary>
         public object Object { get; }
+
+        /// <summary>
+        /// Sets the behavior for undefined method calls.
+        /// </summary>
+        public MockBehavior MockBehavior
+        {
+            get { return Dispatcher.MockBehavior; }
+            set { Dispatcher.MockBehavior = value; }
+        }
 
         internal IMockProxyDispatcher Dispatcher { get; }
 

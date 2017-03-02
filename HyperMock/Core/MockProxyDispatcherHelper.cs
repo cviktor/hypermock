@@ -24,6 +24,12 @@ namespace HyperMock.Core
 
             if (setupInfo == null)
             {
+                if (_dispatcher.MockBehavior == MockBehavior.Strict)
+                {
+                    throw new InvalidOperationException(
+                        $"There is no setup for this call. Method: {method.Name}.{Environment.NewLine}Either set the behavior of this method, or set the MockBehavior to Loose.");
+                }
+
                 BuildDefaultResponse(method, response);
             }
             else if (setupInfo.Exception != null)

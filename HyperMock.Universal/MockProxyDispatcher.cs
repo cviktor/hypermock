@@ -12,9 +12,12 @@ namespace HyperMock
     {
         private readonly MockProxyDispatcherHelper _helper;
 
+        public MockBehavior MockBehavior { get; set; }
+
         public MockProxyDispatcher()
         {
             _helper = new MockProxyDispatcherHelper(this);
+            MockBehavior = Mock.DefaultMockBehavior;
         }
 
         VisitList IMockProxyDispatcher.Visits { get; } = new VisitList();

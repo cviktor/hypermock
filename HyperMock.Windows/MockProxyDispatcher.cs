@@ -14,9 +14,12 @@ namespace HyperMock
     {
         private readonly MockProxyDispatcherHelper _helper;
 
+        public MockBehavior MockBehavior { get; set; }
+
         public MockProxyDispatcher(Type interfaceType) : base(interfaceType)
         {
             _helper = new MockProxyDispatcherHelper(this);
+            MockBehavior = Mock.DefaultMockBehavior;
         }
 
         VisitList IMockProxyDispatcher.Visits { get; } = new VisitList();
@@ -42,5 +45,6 @@ namespace HyperMock
                 methodCall.LogicalCallContext,
                 methodCall);
         }
+
     }
 }
